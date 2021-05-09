@@ -5,7 +5,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider';
 import {ClienteModule} from './cliente/cliente.module';
+import {HttpClientModule} from '@angular/common/http';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {IConfig, NgxMaskModule} from 'ngx-mask';
 
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -15,7 +19,10 @@ import {ClienteModule} from './cliente/cliente.module';
     BrowserModule,
     BrowserAnimationsModule,
     MatSliderModule,
-    ClienteModule
+    ClienteModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

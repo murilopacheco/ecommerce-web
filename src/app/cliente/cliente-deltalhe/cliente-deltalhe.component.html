@@ -1,0 +1,62 @@
+<div class="card">
+  <div class="card-header">
+      Manutenção de Clientes:
+  </div>
+  <div class="card-body">
+    <div class="card-container">
+      <div>
+        <form [formGroup]="formCliente" (ngSubmit)="onSubmit"  class="form-exemplo">
+          <div style="display: none">
+            <mat-form-field class="example-full-width">
+              <mat-label>ID</mat-label>
+              <input matInput  [formControl]="id">
+            </mat-form-field>
+          </div>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Nome</mat-label>
+            <input type="text" matInput placeholder="Ex. João" formControlName="nome" [errorStateMatcher]="matcher"
+                   required>
+            <mat-error *ngIf=" nomeControl.hasError('nome') && !nomeControl.hasError('required')">
+              por favor entre com nome válido!
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>CPF</mat-label>
+            <input type="text" matInput placeholder="Ex: 999.999.999-99" [formControl]="cpf" [errorStateMatcher]="matcher"
+                   mask="000.000.000-99" required >
+            <mat-error *ngIf="cpf.hasError('cpf') && !cpf.hasError('required')">
+              por favor entre com cpf válido!
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Primeiro Nome</mat-label>
+            <input type="text" matInput placeholder="Ex: João" [formControl]="primeiroNome" [errorStateMatcher]="matcher"
+                   pattern="[a-zA-Z]*" required>
+            <mat-error *ngIf="primeiroNome.hasError('primeiroNome') && !primeiroNome.hasError('required')">
+              por favor entre com cpf válido!
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" mask="00/00/0000">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <hr>
+
+          <button mat-button type="submit" (click)="onSubmit()" color="primary"> Salvar </button>
+
+
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
