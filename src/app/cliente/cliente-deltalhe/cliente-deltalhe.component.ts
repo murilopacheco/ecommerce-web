@@ -36,43 +36,38 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 export class ClienteDeltalheComponent implements OnInit, ErrorStateMatcher {
 
-  constructor( private clienteService: ClienteService,
-               private fb: FormBuilder
-  ) { }
+  constructor(private clienteService: ClienteService,
+              private fb: FormBuilder
+  ) {
+  }
 
   cliente: ClienteDto;
 
-  cpf = new FormControl('', [
-    Validators.required,
-  ]);
+  formCliente: FormGroup;
 
-  nomeControl = new FormControl('', [
-    Validators.required,
-    Validators.pattern('a-zA-Z')
-  ]);
-
-  primeiroNome = new FormControl('', [
-    Validators.required,
-  ]);
-
-  id = new FormControl([]);
-
-matcher = new MyErrorStateMatcher();
-formCliente = this.fb.group({
-    nome: new FormControl([])
-  });
-
+  matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
+    this.formCliente = this.fb.group({
+      id: [],
+      nome: ['', [Validators.required, Validators.minLength(4)]],
+      cpf: ['', [Validators.required]],
+      primeiroNome: ['', [Validators.required]],
+      dataNascimento: ['', [Validators.required]]
+    });
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     this.cliente = this.formCliente.value;
-    alert(this.cliente.nome);
+    alert(this.cliente.nome + ', ' + this.cliente.dataNascimento.toString() + ', ' + this.cliente.cpf);
   }
 
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     return false;
+  }
+
+  get getControl(){
+    return this.formCliente.controls;
   }
 
 }
