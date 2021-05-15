@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ClienteDto} from '../../../model/cliente-dto';
 import {ClienteService} from '../cliente.service';
 import {Location} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cliente',
@@ -12,10 +13,11 @@ export class ClienteComponent implements OnInit {
 
   constructor(
     private clienteService: ClienteService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
-  displayedColumns: string[] = ['id', 'nome', 'cpf'];
+  displayedColumns: string[] = ['id', 'nome', 'cpf', 'acoes'];
 
   cliente: ClienteDto = {
     id: 0,
@@ -47,5 +49,8 @@ export class ClienteComponent implements OnInit {
         this.dataSource = this.clientes;
         location.reload();
    });
+  }
+  editarCliente(cliente: ClienteDto): void {
+    this.router.navigate(['/cliente-detalhe', cliente.id]);
   }
 }

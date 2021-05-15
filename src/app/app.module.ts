@@ -8,6 +8,9 @@ import {ClienteModule} from './cliente/cliente.module';
 import {HttpClientModule} from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {IConfig, NgxMaskModule} from 'ngx-mask';
+import {RouterModule} from '@angular/router';
+import {AppRoutingModule} from './app-routing.module';
+import {ClienteRoutingModule} from './cliente/cliente-routing.module';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -22,7 +25,10 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     ClienteModule,
     HttpClientModule,
     MatSnackBarModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    RouterModule,
+    AppRoutingModule,
+    ClienteRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
