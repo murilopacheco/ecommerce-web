@@ -1,0 +1,22 @@
+<div class="signin-content">
+  <div class="card-container">
+    <div>
+      <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+        <p>Por favor efetue login para continuar</p>
+        <mat-form-field class="full-width-input">
+          <input matInput placeholder="Usuário" formControlName="userName" required>
+          <mat-error *ngIf="isFieldInvalid('userName')">
+            Por favor informe o usuário
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input matInput type="password" placeholder="Senha" formControlName="password" required>
+          <mat-error *ngIf="isFieldInvalid('userName')">
+            Por favor informe a senha
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

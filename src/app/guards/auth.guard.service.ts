@@ -29,6 +29,6 @@ export class AuthGuardService {
 
   logout (){
     this.loggedIn.next(false);
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 }
