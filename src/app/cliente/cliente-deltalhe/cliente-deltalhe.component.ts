@@ -91,10 +91,17 @@ export class ClienteDeltalheComponent implements OnInit, ErrorStateMatcher {
 
   onSubmit(): void {
     this.cliente = this.formCliente.value;
-    this.clienteService.salvarCliente(this.cliente).subscribe(() => {
-      this.clienteService.showMessage('Cliente salvo com sucesso', false);
-    });
-    this.router.navigate(['/cliente']);
+    if (this.cliente.id === null){
+      this.clienteService.salvarCliente(this.cliente).subscribe(() => {
+        this.clienteService.showMessage('Cliente salvo com sucesso', false);
+      });
+      this.router.navigate(['/cliente']);
+    }else{
+      this.clienteService.editarCliente(this.cliente).subscribe(() => {
+        this.clienteService.showMessage('Cliente salvo com sucesso', false);
+      });
+      this.router.navigate(['/cliente']);
+    }
   }
 
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

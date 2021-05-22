@@ -53,4 +53,8 @@ export class ClienteComponent implements OnInit {
   editarCliente(cliente: ClienteDto): void {
     this.router.navigate(['/cliente-detalhe', cliente.id]);
   }
+
+  deletarCliente(cliente: ClienteDto): void {
+    this.clienteService.deletarCliente(cliente.id);
+  }
 }

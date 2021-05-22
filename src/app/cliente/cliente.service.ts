@@ -34,7 +34,7 @@ export class ClienteService {
 
   editarCliente(cliente: ClienteDto): Observable<ClienteDto>{
     const url = `${environment.config.URL_API}/cliente/edit` ;
-    return this.httpCliente.post<ClienteDto>(url, cliente).pipe(
+    return this.httpCliente.put<ClienteDto>(url, cliente).pipe(
       map(obj => obj),
       catchError( (e) => this.errorHandler(e))
     );
@@ -57,6 +57,14 @@ export class ClienteService {
   bucarClientesPorId(id: number): Observable<ClienteDto> {
     const url = `${environment.config.URL_API}/cliente/` ;
     return this.httpCliente.get<ClienteDto>(url + id).pipe(
+      map((cliente) => cliente),
+      catchError( (e) => this.errorHandler(e))
+    );
+  }
+
+  deletarCliente(id: number): void {
+    const url = `${environment.config.URL_API}/cliente/delete/` ;
+    this.httpCliente.delete<ClienteDto>(url + id).pipe(
       map((cliente) => cliente),
       catchError( (e) => this.errorHandler(e))
     );
