@@ -23,12 +23,12 @@ export class AuthGuardService {
   login (user: UserDto) {
     if (user.userName !== '' && user.password !== ''){
       this.loggedIn.next(true);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/']);
     }
   }
 
   logout (){
     this.loggedIn.next(false);
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 }
